@@ -367,8 +367,9 @@ footer b{color:var(--on-hero)}
         <div class="row3">
           <label for="f-n">Number of holdings<input id="f-n" name="holdings" type="number" min="1" max="100" value="20"></label>
           <label for="f-w">Position sizes<select id="f-w" name="weights"><option>Equal amounts</option><option>By company size</option><option>Other (describe below)</option></select></label>
-          <label for="f-freq">Review schedule<select id="f-freq" name="review"><option>Weekly</option><option selected>Monthly</option><option>Quarterly</option><option>Yearly</option></select></label>
+          <label for="f-freq">Review schedule<select id="f-freq" name="review" aria-describedby="f-freq-help"><option>Every trading day</option><option>Once a week</option><option>Every two weeks</option><option selected>Once a month</option><option>Every three months</option><option>Other (say how often in the notes)</option></select></label>
         </div>
+        <p class="fine" id="f-freq-help">The most frequent review is once per trading day. More frequent reviews mean more orders and higher trading costs in the test.</p>
         <label for="f-exit">Selling rule<textarea id="f-exit" name="exit" rows="2" placeholder="For example: sell when a company leaves the top 40 at a review."></textarea></label>
         <div class="row3">
           <label for="f-uni">Universe<select id="f-uni" name="universe"><option>All S&amp;P 500 companies</option><option>One or more sectors (describe below)</option></select></label>
