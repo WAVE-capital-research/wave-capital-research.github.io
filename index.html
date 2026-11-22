@@ -355,6 +355,10 @@ footer b{color:var(--on-hero)}
           <label for="f-name">Your name<input id="f-name" name="name" type="text" autocomplete="name" required></label>
           <label for="f-email">Email for the report<input id="f-email" name="email" type="email" autocomplete="email" required></label>
         </div>
+        <div class="row2">
+          <label for="f-use">This test is for<select id="f-use" name="use"><option>Private use</option><option>Professional use</option></select></label>
+          <label for="f-status">You are currently<select id="f-status" name="status"><option>Working</option><option>A student</option><option>Other</option></select></label>
+        </div>
       </fieldset>
       <fieldset><legend>The strategy</legend>
         <label for="f-title">Strategy name<input id="f-title" name="title" type="text" placeholder="For example: low-debt dividend growers"></label>
@@ -368,7 +372,7 @@ footer b{color:var(--on-hero)}
         <label for="f-exit">Selling rule<textarea id="f-exit" name="exit" rows="2" placeholder="For example: sell when a company leaves the top 40 at a review."></textarea></label>
         <div class="row3">
           <label for="f-uni">Universe<select id="f-uni" name="universe"><option>All S&amp;P 500 companies</option><option>One or more sectors (describe below)</option></select></label>
-          <label for="f-from">Test period from<select id="f-from" name="from"><option>2015 (earliest)</option><option>2018</option><option>2020</option></select></label>
+          <label for="f-from">Test period from<select id="f-from" name="from"><option>2018 (earliest)</option><option>2020</option></select></label>
           <label for="f-cap">Starting amount (US$)<input id="f-cap" name="capital" type="number" min="1000" step="1000" value="100000"></label>
         </div>
         <label for="f-notes">Anything else: limits, cash rules, special cases<textarea id="f-notes" name="notes" rows="3"></textarea></label>
@@ -377,6 +381,7 @@ footer b{color:var(--on-hero)}
         <label class="check" for="f-c1"><input id="f-c1" name="c1" type="checkbox" required><span>I understand the report describes historical tests only. It is not investment advice or a recommendation to buy or sell anything.</span></label>
         <label class="check" for="f-c2"><input id="f-c2" name="c2" type="checkbox" required><span>I agree that WAVE may study the strategy I submit as part of its own research. WAVE will not publish it or share it with anyone else.</span></label>
         <label class="check" for="f-c3"><input id="f-c3" name="c3" type="checkbox" required><span>I agree that WAVE may store my name and email address to send the report and reply to questions about it. The form is delivered to WAVE by Formspree, a form service.</span></label>
+        <label class="check" for="f-c4"><input id="f-c4" name="keep_in_touch" type="checkbox" value="yes"><span>Optional: I agree that WAVE may keep my name, email address and the two answers above on file after the report is sent, to understand who uses the service and to contact me about its research. I can ask for them to be deleted at any time by emailing wave.capitalandresearch@gmail.com.</span></label>
       </fieldset>
       <p class="formerr" id="formerr" role="alert" hidden></p>
       <div class="lab-top"><button class="btn" type="submit">Send request</button><span class="fine">You will receive a confirmation within 2 working days.</span></div>
@@ -503,7 +508,7 @@ footer b{color:var(--on-hero)}
   window.addEventListener('hashchange', route); route();
   var form = document.getElementById('req'), sent = document.getElementById('sent'), ferr = document.getElementById('formerr');
   form.addEventListener('submit', function (e) { e.preventDefault(); var bad = [].slice.call(form.querySelectorAll('[required]')).filter(function (x) { return x.type === 'checkbox' ? !x.checked : !x.value.trim(); }); var em = document.getElementById('f-email'); if (!bad.length && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value.trim())) bad = [em];
-    if (bad.length) { ferr.textContent = bad[0].type === 'checkbox' ? 'Please tick all three boxes before sending.' : 'Please fill in your name, a valid email address, the idea and the selection rule.'; ferr.hidden = false; bad[0].focus(); return; }
+    if (bad.length) { ferr.textContent = bad[0].type === 'checkbox' ? 'Please tick the first three boxes before sending.' : 'Please fill in your name, a valid email address, the idea and the selection rule.'; ferr.hidden = false; bad[0].focus(); return; }
     ferr.hidden = true; var done = function () { form.hidden = true; sent.hidden = false; sent.scrollIntoView({ block: 'center' }); };
     if (!window.WAVE_FORM) { done(); return; }   /* preview: nothing is sent */
     var btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Sending...';
